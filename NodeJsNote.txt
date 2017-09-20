@@ -19,3 +19,44 @@ http.createServer(function (request, response) {
 // 终端打印如下信息
 console.log('Server running at http://127.0.0.1:8888/');
 
+Node.js REPLL(交互式解释器) 可以在终端中输入命令，并接收系统的响应。
+输入以下命令来启动 Node 的终端：
+$ node
+可以执行以下任务：
+读取 - 读取用户输入，解析输入了Javascript 数据结构并存储在内存中。
+执行 - 执行输入的数据结构
+打印 - 输出结果
+循环 - 循环操作以上步骤直到用户两次按下 ctrl-c 按钮退出。
+
+REPL 命令
+ctrl + c - 退出当前终端。
+ctrl + c 按下两次 - 退出 Node REPL。
+ctrl + d - 退出 Node REPL.
+向上/向下 键 - 查看输入的历史命令
+tab 键 - 列出当前命令
+.help - 列出使用命令
+.break - 退出多行表达式
+.clear - 退出多行表达式
+.save filename - 保存当前的 Node REPL 会话到指定文件
+.load filename - 载入当前 Node REPL 会话的文件内容。
+
+Node.js 异步编程的直接体现就是回调。
+可以一边读取文件，一边执行其他命令，在文件读取完成后，我们将文件内容作为回调函数的参数返回。这样在执行代码时就没有阻塞或等待文件 I/O 操作。这就大大提高了 Node.js 的性能，可以处理大量的并发请求。
+Node.js 是单进程单线程应用程序，但是通过事件和回调支持并发，所以性能非常高。
+
+fs.readFile() 是异步函数用于读取文件。
+
+events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是事件触发与事件监听器功能的封装。
+
+Buffer 类用来创建一个专门存放二进制数据的缓存区。
+一个 Buffer 类似于一个整数数组，但它对应于 V8 堆内存之外的一块原始内存。
+方法 1
+创建长度为10字节的 Buffer 实例：
+var buf = new Buffer(10);
+方法 2
+通过给定的数组创建 Buffer 实例：
+var buf = new Buffer([10, 20, 30, 40, 50]);
+方法 3
+通过一个字符串来创建 Buffer 实例：
+var buf = new Buffer("www.runoob.com", "utf-8");
+utf-8 是默认的编码方式，此外它同样支持以下编码："ascii", "utf8", "utf16le", "ucs2", "base64" 和 "hex"。
