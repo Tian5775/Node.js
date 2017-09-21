@@ -60,3 +60,54 @@ var buf = new Buffer([10, 20, 30, 40, 50]);
 通过一个字符串来创建 Buffer 实例：
 var buf = new Buffer("www.runoob.com", "utf-8");
 utf-8 是默认的编码方式，此外它同样支持以下编码："ascii", "utf8", "utf16le", "ucs2", "base64" 和 "hex"。
+
+Stream 有四种流类型：
+Readable - 可读操作。
+Writable - 可写操作。
+Duplex - 可读可写操作.
+Transform - 操作被写入数据，然后读出结果。
+所有的 Stream 对象都是 EventEmitter 的实例。常用的事件有：
+data - 当有数据可读时触发。
+end - 没有更多的数据可读时触发。
+error - 在接收和写入过程中发生错误时触发。
+finish - 所有数据已被写入到底层系统时触发。
+var readerStream = fs.createReadStream('input.txt');// 创建一个可读流
+var writerStream = fs.createWriteStream('output.txt');// 创建一个可写流
+readerStream.pipe(writerStream);// 读取 input.txt 文件内容，并将内容写入到 output.txt 文件中
+fs.createReadStream('input.txt').pipe(zlib.createGzip()).pipe(fs.createWriteStream('input.txt.gz'));// 压缩 input.txt 文件为 input.txt.gz
+fs.createReadStream('input.txt.gz').pipe(zlib.createGunzip()).pipe(fs.createWriteStream('input.txt'));// 解压 input.txt.gz 文件为 input.txt
+
+Node.js 提供了exports 和 require 两个对象，其中 exports 是模块公开的接口，require 用于从外部获取一个模块的接口，即所获取模块的 exports 对象。
+在以下示例中，hello.js 通过 exports 对象把 world 作为模块的访问接口，在 main.js 中通过 require('./hello') 加载这个模块，然后就可以直接访 问 hello.js 中 exports 对象的成员函数了。
+引用'hello.js':
+var hello = require('./hello');
+hello.world();
+hello.js：
+exports.world = function() {
+  console.log('Hello World');
+}
+有时候我们只是想把一个对象封装到模块中，格式如下：
+module.exports = function() {
+  // ...
+}
+例：
+//hello.js 
+function Hello() { 
+    var name; 
+    this.setName = function(thyName) { 
+        name = thyName; 
+    }; 
+    this.sayHello = function() { 
+        console.log('Hello ' + name); 
+    }; 
+}; 
+module.exports = Hello;
+//main.js 
+var Hello = require('./hello'); 
+hello = new Hello(); 
+
+require方法接受以下几种参数的传递：
+http、fs、path等，原生模块。
+./mod或../mod，相对路径的文件模块。
+/pathtomodule/mod，绝对路径的文件模块。
+mod，非原生模块的文件模块。
