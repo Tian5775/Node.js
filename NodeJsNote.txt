@@ -131,3 +131,35 @@ util.isArray(object)如果给定的参数 "object" 是一个数组返回true，否则返回false。
 util.isRegExp(object)如果给定的参数 "object" 是一个正则表达式返回true，否则返回false。
 util.isDate(object)如果给定的参数 "object" 是一个日期返回true，否则返回false。
 util.isError(object)如果给定的参数 "object" 是一个错误对象返回true，否则返回false。
+
+Node.js 文件系统（fs 模块）模块中的方法均有异步和同步版本，例如读取文件内容的函数有异步的 fs.readFile() 和同步的 fs.readFileSync()。
+异步的方法函数最后一个参数为回调函数，回调函数的第一个参数包含了错误信息(error)。
+建议大家是用异步方法，比起同步，异步方法性能更高，速度更快，而且没有阻塞。
+在异步模式下打开文件的语法格式：
+fs.open(path, flags[, mode], callback)
+以下为通过异步模式获取文件信息的语法格式：
+fs.stat(path, callback)
+以下为异步模式下写入文件的语法格式：
+fs.writeFile(file, data[, options], callback)
+以下为异步模式下读取文件的语法格式：
+fs.read(fd, buffer, offset, length, position, callback)
+以下为异步模式下关闭文件的语法格式：
+fs.close(fd, callback)
+以下为异步模式下截取文件的语法格式：
+fs.ftruncate(fd, len, callback)
+以下为删除文件的语法格式：
+fs.unlink(path, callback)
+以下为创建目录的语法格式：
+fs.mkdir(path[, mode], callback)
+以下为读取目录的语法格式：
+fs.readdir(path, callback)
+以下为删除目录的语法格式：
+fs.rmdir(path, callback)
+具体的参数说明和对象方法请查看:
+http://www.runoob.com/nodejs/nodejs-fs.html
+
+由于GET请求直接被嵌入在路径中，URL是完整的请求路径，包括了?后面的部分，因此你可以手动解析后面的内容作为GET请求的参数。
+node.js 中 url 模块中的 parse 函数提供了这个功能。
+POST 请求的内容全部的都在请求体中，http.ServerRequest 并没有一个属性内容为请求体，原因是等待请求体传输可能是一件耗时的工作。
+
+Node.js 提供了 http 模块，http 模块主要用于搭建 HTTP 服务端和客户端，使用 HTTP 服务器或客户端功能必须调用 http 模块
