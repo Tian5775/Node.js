@@ -19,6 +19,20 @@ http.createServer(function (request, response) {
 // 终端打印如下信息
 console.log('Server running at http://127.0.0.1:8888/');
 
+NPM是随同NodeJS一起安装的包管理工具
+npm install <Module Name>       # 本地安装
+npm install <Module Name> -g    # 全局安装
+npm list grunt                  #查看所有全局安装的模块
+npm uninstall <Module Name>     #卸载 Node.js 模块
+npm update <Module Name>        #更新模块
+npm ls                          #查看已安装模块列表
+npm search <Module Name>        #搜索模块
+npm cache clear                 #清空NPM本地缓存
+// 设置npm安装程序时的默认位置
+npm config set prefix "D:\Program Files\nodejs\X64\node_global"
+// 设置npm安装程序时的缓存位置
+npm config set cache "D:\Program Files\nodejs\X64\node_cache"
+
 Node.js REPLL(交互式解释器) 可以在终端中输入命令，并接收系统的响应。
 输入以下命令来启动 Node 的终端：
 $ node
@@ -163,3 +177,24 @@ node.js 中 url 模块中的 parse 函数提供了这个功能。
 POST 请求的内容全部的都在请求体中，http.ServerRequest 并没有一个属性内容为请求体，原因是等待请求体传输可能是一件耗时的工作。
 
 Node.js 提供了 http 模块，http 模块主要用于搭建 HTTP 服务端和客户端，使用 HTTP 服务器或客户端功能必须调用 http 模块
+
+安装 Express 并将其保存到依赖列表中：
+npm install express --save
+以下几个重要的模块是需要与 express 框架一起安装的：
+npm install body-parser --save          //body-parser - node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的数据。
+npm install cookie-parser --save        //cookie-parser - 这就是一个解析Cookie的工具。通过req.cookies可以取到传过来的cookie，并把它们转成对象。
+npm install multer --save               //multer - node.js 中间件，用于处理 enctype="multipart/form-data"（设置表单的MIME编码）的表单数据。
+Express 应用使用回调函数的参数： request 和 response 对象来处理请求和响应的数据。
+路由决定了由谁(指定脚本)去响应客户端请求。在HTTP请求中，我们可以通过路由提取出请求的URL以及GET/POST参数。
+http://www.runoob.com/nodejs/nodejs-express-framework.html
+
+forever
+$ npm install forever -g   #安装
+$ forever start app.js          #启动
+$ forever stop app.js           #关闭
+$ forever start -l forever.log -o out.log -e err.log app.js   #输出日志和错误
+
+Node 提供了 child_process 模块来创建子进程，方法有：
+exec - child_process.exec 使用子进程执行命令，缓存子进程的输出，并将子进程的输出以回调函数参数的形式返回。
+spawn - child_process.spawn 使用指定的命令行参数创建新进程。
+fork - child_process.fork 是 spawn()的特殊形式，用于在子进程中运行的模块，如 fork('./son.js') 相当于 spawn('node', ['./son.js']) 。与spawn方法不同的是，fork会在父进程与子进程之间，建立一个通信管道，用于进程之间的通信。
