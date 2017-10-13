@@ -32,6 +32,8 @@ npm cache clear                 #清空NPM本地缓存
 npm config set prefix "D:\Program Files\nodejs\X64\node_global"
 // 设置npm安装程序时的缓存位置
 npm config set cache "D:\Program Files\nodejs\X64\node_cache"
+安装配置教程:
+http://jingyan.baidu.com/article/91f5db1b2bb6941c7f05e33c.html
 
 Node.js REPLL(交互式解释器) 可以在终端中输入命令，并接收系统的响应。
 输入以下命令来启动 Node 的终端：
