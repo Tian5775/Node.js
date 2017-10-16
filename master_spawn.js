@@ -6,6 +6,8 @@ for(var i=0;i<3;i++){
 
     workerProcess.stdout.on('data',function(data){
        console.log('stdout: ' + data);
+        var a = data;
+        console.log('a' + data);
     });
 
     workerProcess.stderr.on('data',function(data){

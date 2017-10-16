@@ -1,9 +1,18 @@
 var db = require('./db');
 
-db.sql('select * from MSreplication_options',function(err,result){
+db.sql("update MSreplication_options set major_version = 40 where optname = 'transactional'",function(err,result){
     if (err) {
         console.log(err);
         return;
     }
-    console.log('用户总数为 :',result);
+    console.log(result);
+});
+
+
+db.sql("select * from MSreplication_options",function(err,result){
+    if (err) {
+        console.log(err);
+        return;
+    }
+    console.log(result);
 });
